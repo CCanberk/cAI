@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8">
+    <title>Cevap</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <div class="menu">
+        <a href="/" class="active">Ana Sayfa</a>
+        <a href="#about">Hakkında</a>
+        <a href="#contact">İletişim</a>
+    </div>
+      
+    <div class="container">
+      <h1>Cevap</h1>
+      <p>{{ message | safe }}</p>
+      <div class="centered-button">
+        <a href="/" class="back-button">Yeni Soru Sor</a>
+      </div> 
+    </div>
+  </body>
+</html>

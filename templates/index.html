@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8">
+    <title>Soru Sor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <div class="menu">
+      <a href="/" class="active">Ana Sayfa</a>
+      <a href="#about">Hakkında</a>
+      <a href="#contact">İletişim</a>
+    </div>
+    
+      
+    <div class="container">
+      <h1>Tasarım Önerisi</h1>
+      <form action="/answer" method="post" id="main-form">
+        <label for="category">Site Kategorisi:</label>
+        <input type="text" id="category" name="category" required>
+        
+
+        <label for="design_line">Tasarım Çizgisi:</label>
+        <div class="input-counter-wrapper">
+          <textarea id="design_line" name="design_line" rows="3" maxlength="100" required></textarea>
+          <div class="char-counter" id="char-counter">0 / 100</div>
+        </div>
+        
+        <label for="user_group">Kullanıcı Grubu:</label>
+        <input type="text" id="user_group" name="user_group" required>
+        
+      <div class="centered-button">
+      <input type="submit" class="submit-button" value="Gönder">
+      </div>
+      </form>
+      <div class="loading-text" id="loading-text">
+        Cevap Bekleniyor<span class="loading">.</span><span class="loading">.</span><span class="loading">.</span>
+      </div>
+    </div>
+    <script>
+      document.getElementById("main-form").addEventListener("submit", function(event) {
+        var submitButton = event.target.querySelector("input[type='submit']");
+        submitButton.disabled = true;
+        document.getElementById("loading-text").style.display = "block";
+        // Timeout ekleyerek submit butonunu tekrar etkinleştirin
+        setTimeout(function () {
+          submitButton.disabled = false;
+          document.getElementById("loading-text").style.display = "none";
+        }, 3000);
+      });
+      
+      var designLineInput = document.getElementById("design_line");
+      var charCounter = document.getElementById("char-counter");
+
+      designLineInput.addEventListener("input", function() {
+        charCounter.textContent = designLineInput.value.length + " / 100";
+      });
+    </script>
+  </body>
+</html>
